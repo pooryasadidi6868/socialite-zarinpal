@@ -1,0 +1,21 @@
+{
+    "name": "pooryasadidi/socialite-zarinpal",
+    "description": "ZarinPal OAuth2 Provider for Laravel Socialite",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Poorya Sadidi",
+            "email": "pooryasadidi6868@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "socialiteproviders/manager": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PooryaSadidi\\ZarinPal\\": ""
+        }
+    }
+}
