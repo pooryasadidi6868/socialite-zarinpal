@@ -40,12 +40,12 @@ You should now be able to use the provider like you would regularly use Socialit
 
 ```php
 return Socialite::driver('zarinpal')->stateless()->redirect();
-return Socialite::driver('zarinpal')->stateless()->user();
+$user = Socialite::driver('zarinpal')->stateless()->user();
 ```
 
 ### Returned User fields
 
-- ``id``
-- ``fullname``
-- ``phone``
-- ``avatar``
+- ``$user->id``
+- ``$user->full_name``
+- ``$user->phone``
+- ``$user->avatar``
