@@ -3,6 +3,7 @@
 namespace PooryaSadidi\ZarinPal;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
 use Predis\ClientException;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
@@ -86,17 +87,7 @@ class Provider extends AbstractProvider
     protected function getUserByToken($token)
     {
         $graphQLquery = include('Query.php');
-        $response = $this->getHttpClient()->post('https://next.zarinpal.com/api/v4/graphql',
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $token,
-                ],
-                'form_params' => $graphQLquery
-            ]);
-
-
-
+        $response = Http::asJson()->withToken($token)->post('https://next.zarinpal.com/api/v4/graphql', $graphQLquery);
         return json_decode($response->getBody(), true);
     }
 
@@ -134,7 +125,6 @@ class Provider extends AbstractProvider
             'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
             'form_params' => $this->getTokenFields($code),
         ]);
-
         return json_decode($response->getBody(), true);
     }
 
